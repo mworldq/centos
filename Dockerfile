@@ -13,8 +13,7 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Install curl  
-RUN yum install -y curl wget
-RUN yum update && yum install -y \
+RUN yum -y update && yum install -y \
 	curl \
 	wget
 
