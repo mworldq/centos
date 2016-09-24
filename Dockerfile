@@ -14,9 +14,8 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 #VOLUME [ "/sys/fs/cgroup" ]
 #CMD ["/usr/sbin/init"]
 
-# Install curl  
-RUN yum install -y curl wget
-RUN yum update && yum install -y \
+# Install curl and wget
+RUN yum install -y \
 	curl \
 	wget
 
@@ -25,4 +24,4 @@ RUN cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
 RUN wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 
 RUN wget -P /etc/yum.repos.d/ http://mirrors.aliyun.com/repo/epel-7.repo  
 
-RUN yum clean all && yum makecache
+RUN yum clean all && yum makecache && yum -y update 
