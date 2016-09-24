@@ -16,11 +16,13 @@ rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 # Install curl  
 RUN yum install -y curl wget
+RUN yum update && yum install -y \
+	curl \
+	wget
 
 # update source  
 RUN cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
 RUN wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo 
 RUN wget -P /etc/yum.repos.d/ http://mirrors.aliyun.com/repo/epel-7.repo  
 
-RUN yum clean all  
-RUN yum makecache
+RUN yum clean all && yum makecache
